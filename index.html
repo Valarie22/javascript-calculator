@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>My Calculator</title>
+</head>
+<body>
+ <table id ="calculator" class="calculator">
+
+    <tr>
+        <td col span = "3">
+            <input type ="text"  id ="result" disabled>
+        </td>
+    </tr>
+    <tr>
+        <td>
+<input type ="button" value ="Ac" onclick="clearResult()">
+<input type ="button" value ="%" onclick="appendToResult('%')">
+<input type ="button" value ="x" onclick="clearLast()">
+<input type ="button" value ="÷" onclick="appendToResult('÷')">
+        </td>
+    </tr>
+    <tr>
+        <td>
+<input type ="button" value ="7" onclick="appendToResult('7')">
+<input type ="button" value ="8" onclick="appendToResult('8')">
+<input type ="button" value ="9" onclick="appendToResult('9')">
+<input type ="button" value ="*" onclick="appendToResult('*')">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type ="button" value ="4" onclick="appendToResult('4')">
+            <input type ="button" value ="5" onclick="appendToResult('5')">
+            <input type ="button" value ="6" onclick="appendToResult('6')">
+            <input type ="button" value ="-" onclick="appendToResult('-')"> 
+        </td>
+       
+            
+        </tr>
+        <tr>
+            <td>
+                <input type ="button" value ="1" onclick="appendToResult('1')">
+                <input type ="button" value ="2" onclick="appendToResult('2')">
+                <input type ="button" value ="3" onclick="appendToResult('3')">
+                <input type ="button" value ="+" onclick="appendToResult('+')"> 
+            </td>
+    </tr>
+    <tr>
+        <td>
+            <input type ="button" value ="00" onclick="appendToResult('00')">
+                <input type ="button" value ="0" onclick="appendToResult('0')">
+                <input type ="button" value ="." onclick="appendToResult('.')">
+                <input type ="button" value ="=" onclick="calculateResult()"> 
+        </td>
+    </tr>
+ </table>
+ <script>
+     const resultField = document.getElementById('result');
+
+// Function to append values to the result field
+function appendToResult(value) {
+    resultField.value += value;  // Append clicked value to the result
+}
+
+// Function to clear the result field
+function clearResult() {
+    resultField.value = '';  // Reset result field
+}
+function clearLast(){
+    resultField.value = resultField.value.slice(0,-1); //Remove the last character
+}
+
+// Function to calculate the result when '=' is clicked
+function calculateResult() {
+    try {
+        // Replace 'x' with '*' and '÷' with '/' for proper calculation in JavaScript
+        let expression = resultField.value.replace(/x/g, "*").replace(/÷/g, "/");
+        resultField.value = eval(expression);  // Use eval() to calculate the expression
+    } catch (error) {
+        resultField.value = 'Error';  // Display error if the expression is invalid
+    }
+}
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
